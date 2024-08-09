@@ -1,11 +1,20 @@
 package com.example.testchat.di
 
+import com.example.testchat.repository.token.AuthTokenRepository
+import com.example.testchat.repository.auth.PhoneNumberRepository
+import com.example.testchat.repository.auth.RegisterRepository
+import com.example.testchat.repository.auth.SendCodeRepository
 import com.example.testchat.repository.chat.ChatRepository
 import com.example.testchat.repository.profile.api.ProfileApiRepository
 import com.example.testchat.repository.profile.room.ProfileRoomRepository
 import com.example.testchat.repository.token.TokenRepository
 import com.example.testchat.room.AppDatabase
 import com.example.testchat.ui.splash.NetworkHelper
+import com.example.testchat.usecase.auth.GetMaxPhoneNumberLengthUseCase
+import com.example.testchat.usecase.auth.GetTokenUseCase
+import com.example.testchat.usecase.auth.RegisterUseCase
+import com.example.testchat.usecase.auth.SaveTokenUseCase
+import com.example.testchat.usecase.auth.SendCodeUseCase
 import com.example.testchat.usecase.profile.DeleteProfileDataUseCase
 import com.example.testchat.usecase.profile.GetProfileDataByIdUseCase
 import com.example.testchat.usecase.profile.InsertProfileDataUseCase
@@ -89,6 +98,41 @@ object UseCaseModule {
     ): CheckNetworkUseCase {
         return CheckNetworkUseCase(networkHelper)
     }
+
+
+    @Provides
+    @Singleton
+    fun provideGetMaxPhoneNumberLengthUseCase(
+        repository: PhoneNumberRepository
+    ): GetMaxPhoneNumberLengthUseCase {
+        return GetMaxPhoneNumberLengthUseCase(repository)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideRegisterUseCase(registerRepository: RegisterRepository): RegisterUseCase {
+        return RegisterUseCase(registerRepository)
+    }
+
+
+    @Provides
+    fun provideSaveTokensUseCase(authRepository: AuthTokenRepository): SaveTokenUseCase {
+        return SaveTokenUseCase(authRepository)
+    }
+
+    @Provides
+    fun provideGetTokensUseCase(authRepository: AuthTokenRepository): GetTokenUseCase {
+        return GetTokenUseCase(authRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSendAuthCodeUseCase(authRepository: SendCodeRepository): SendCodeUseCase {
+        return SendCodeUseCase(authRepository)
+    }
+
+
 
 
 }

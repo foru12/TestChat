@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.security.crypto.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -87,6 +88,9 @@ dependencies {
     implementation(libs.room.ktx)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit.serialization.converter)
+    implementation(libs.ccp)
+    implementation(libs.androidx.security)
+    implementation(libs.sms.view)
 }
 
 kapt {

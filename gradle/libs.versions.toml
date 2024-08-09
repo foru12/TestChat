@@ -20,6 +20,11 @@ retrofit-serialization-converter = "0.8.0"
 room = "2.6.1"
 legacySupportV4 = "1.0.0"
 fragmentKtx = "1.8.2"
+ccp = "2.6.0"
+confirmation = "1.8.1"
+androidx_security = "1.1.0-alpha03"
+securityCryptoKtx = "1.1.0-alpha03"
+
 
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
@@ -44,11 +49,17 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" } # Добавленные зависимости Room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+ccp = { module = "com.hbb20:ccp", version.ref = "ccp" }
+androidx_security = { module = "androidx.security:security-crypto", version.ref = "androidx_security" }
+androidx-security-crypto-ktx = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "securityCryptoKtx" }
+sms_view = { module = "com.github.fraggjkee:sms-confirmation-view",  version.ref = "confirmation" }
+
+
 
 [plugins]
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

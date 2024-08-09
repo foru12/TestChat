@@ -15,15 +15,6 @@
             app:destination="@id/authFragment" />
     </fragment>
     <fragment
-        android:id="@+id/authFragment"
-        android:name="com.example.testchat.ui.auth.ui.AuthFragment"
-        android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth" >
-        <action
-            android:id="@+id/action_authFragment_to_chatsFragment"
-            app:destination="@id/chatsFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/chatsFragment"
         android:name="com.example.testchat.ui.chats.ui.ChatsFragment"
         android:label="fragment_chats"
@@ -45,4 +36,43 @@
         android:name="com.example.testchat.ui.profile.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/codeFragment"
+        android:name="com.example.testchat.ui.auth.ui.CodeFragment"
+        android:label="fragment_code"
+        tools:layout="@layout/fragment_code" >
+        <action
+            android:id="@+id/action_codeFragment_to_chatsFragment"
+            app:destination="@id/chatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signinFragment"
+        android:name="com.example.testchat.ui.auth.ui.SigninFragment"
+        android:label="fragment_signin"
+        tools:layout="@layout/fragment_signin" >
+        <action
+            android:id="@+id/action_signinFragment_to_chatsFragment"
+            app:destination="@id/chatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.testchat.ui.auth.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_codeFragment"
+            app:destination="@id/codeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authFragment"
+        android:name="com.example.testchat.ui.auth.ui.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFragment_to_signinFragment"
+            app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

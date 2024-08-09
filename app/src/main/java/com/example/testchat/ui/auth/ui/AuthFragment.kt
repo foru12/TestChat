@@ -6,27 +6,43 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.testchat.R
-import com.example.testchat.ui.auth.viewmodel.AuthViewModel
+import com.example.testchat.databinding.FragmentAuthBinding
+import com.example.testchat.databinding.FragmentCodeBinding
 
 class AuthFragment : Fragment() {
+    private var _binding: FragmentAuthBinding? = null
+    private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance() = AuthFragment()
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        choiceAuth()
+
+
     }
 
-    private val viewModel: AuthViewModel by viewModels()
+    private fun choiceAuth() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        binding.run {
+            btnLogin.setOnClickListener {
+                findNavController().navigate(R.id.action_authFragment_to_loginFragment)
+            }
+            btnSignin.setOnClickListener {
+                findNavController().navigate(R.id.action_authFragment_to_signinFragment)
 
-        // TODO: Use the ViewModel
+            }
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_auth, container, false)
+        _binding = FragmentAuthBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

@@ -1,55 +1,90 @@
 package com.example.testchat.ui.splash.ui
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentSplashBinding
 import com.example.testchat.ui.splash.viewmodel.SplashViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
-
 
 
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance() = SplashFragment()
-    }
+
 
     private val viewModel: SplashViewModel by viewModels()
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.networkError.observe(viewLifecycleOwner) { errorMessage ->
+            Log.e("Network Status", "loading...")
             if (errorMessage != null) {
+                Log.e("Network Status", "Error")
                 showNetworkError(errorMessage)
+            } else {
+                viewModel.checkToken()
+                hideNetworkError()
             }
+        }
+
+        viewModel.checkNetwork()
+
+        //todo разобраться как сделать так что бы пользователь если вошел то не авотризовывался заново
+        viewModel.tokenValid.observe(viewLifecycleOwner) { tokenValid ->
+            if (tokenValid) {
+
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_authFragment)
+            }
+
+        }
+    }
+
+    private fun hideNetworkError() {
+        binding.run {
+            networkError.visibility = View.GONE
+            progressLoad.visibility = View.VISIBLE
         }
 
 
     }
 
+    private fun showNetworkError(message: String) {
 
-    private fun showNetworkError(errorMessage: String) {
-        binding.networkError.visibility = View.VISIBLE
-        binding.btnTry.setOnClickListener {
-            // Попробовать снова
-            lifecycleScope.launch {
-                viewModel.checkNetwork()
+        binding.run {
+            networkError.visibility = View.VISIBLE
+            progressLoad.visibility = View.GONE
+            txtError.text = message
+            btnTry.text = requireContext().resources.getString(R.string.try_again)
+            progressBtn.visibility = View.GONE
+            btnTry.setOnClickListener {
+                btnTry.text = ""
+                progressBtn.visibility = View.VISIBLE
+                lifecycleScope.launch {
+                    delay(1500)
+                    viewModel.checkNetwork()
+                }
             }
+            txtError.text = message
         }
-        //binding.errorMessage.text = errorMessage
     }
 
     override fun onCreateView(

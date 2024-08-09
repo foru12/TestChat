@@ -1,5 +1,6 @@
 package com.example.testchat.ui.splash.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,9 +31,13 @@ class SplashViewModel @Inject constructor(
     private val _tokenValid = MutableLiveData<Boolean>()
     val tokenValid: LiveData<Boolean> = _tokenValid
 
+
+    //Пока не испольузется
+    //Можно во время Splash проверять жив ли токен
     fun checkToken() {
         viewModelScope.launch {
-            _tokenValid.value = checkTokenUseCase.execute()
+            _tokenValid.value = false
+                //_tokenValid.value = checkTokenUseCase.execute()
         }
     }
 
@@ -41,19 +46,19 @@ class SplashViewModel @Inject constructor(
             initDatabaseUseCase.execute()
         }
     }
-
+    //Грузим данные профиля еще на Splash
     fun loadProfileData() {
         viewModelScope.launch {
             loadProfileDataUseCase.execute()
         }
     }
-
+    //грузим чаты еще на Splash
     fun loadChats() {
         viewModelScope.launch {
             loadChatsUseCase.execute()
         }
     }
-
+    //Можем проверять версию в сторах и если там более новая то предложить обновить версию
     fun checkAppVersion() {
         viewModelScope.launch {
             checkAppVersionUseCase.execute()
@@ -61,8 +66,11 @@ class SplashViewModel @Inject constructor(
     }
 
     fun checkNetwork() {
-        if (!checkNetworkUseCase.execute()) {
-            _networkError.value = "No internet connection. Please retry."
+        _networkError.value = if (!checkNetworkUseCase.execute()) {
+            "No internet connection. Please retry."
+        } else {
+            Log.e("Network Status", "Succes")
+            null
         }
     }
 
