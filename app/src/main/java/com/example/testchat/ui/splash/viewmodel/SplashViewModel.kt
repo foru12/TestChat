@@ -18,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val checkTokenUseCase: CheckTokenUseCase,
-    private val initDatabaseUseCase: InitDatabaseUseCase,
     private val loadProfileDataUseCase: LoadProfileDataUseCase,
     private val loadChatsUseCase: LoadChatsUseCase,
     private val checkAppVersionUseCase: CheckAppVersionUseCase,
@@ -31,33 +30,32 @@ class SplashViewModel @Inject constructor(
     private val _tokenValid = MutableLiveData<Boolean>()
     val tokenValid: LiveData<Boolean> = _tokenValid
 
-
-    //Пока не испольузется
-    //Можно во время Splash проверять жив ли токен
+    //Проверка токена перед входом
     fun checkToken() {
         viewModelScope.launch {
-            _tokenValid.value = false
-                //_tokenValid.value = checkTokenUseCase.execute()
+            _tokenValid.value = checkTokenUseCase.execute()
+            Log.e("SplashViewModel", "Token validity: ${_tokenValid.value}")
         }
     }
 
-    fun initDataBase() {
-        viewModelScope.launch {
-            initDatabaseUseCase.execute()
-        }
-    }
-    //Грузим данные профиля еще на Splash
+
+
+
     fun loadProfileData() {
         viewModelScope.launch {
-            loadProfileDataUseCase.execute()
+            val roomData = loadProfileDataUseCase.execute()
+            Log.e("Room Data",roomData.toString())
+
         }
     }
+
     //грузим чаты еще на Splash
     fun loadChats() {
         viewModelScope.launch {
             loadChatsUseCase.execute()
         }
     }
+
     //Можем проверять версию в сторах и если там более новая то предложить обновить версию
     fun checkAppVersion() {
         viewModelScope.launch {

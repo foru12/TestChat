@@ -81,10 +81,7 @@ class SigninViewModel @Inject constructor(
         }
     }
 
-    fun getUserData(): LiveData<TokenData?> = liveData {
-        val responseRegister = getTokenUseCase()
-        emit(responseRegister)
-    }
+
 
     private fun removeSpaces(phone: String): String {
         return phone.replace(" ", "")

@@ -19,4 +19,8 @@ class ProfileRoomRepositoryImpl @Inject constructor(
     override suspend fun deleteProfileData(profileRoomData: ProfileRoomData) {
         profileDataDao.deleteProfileData(profileRoomData)
     }
+
+    override suspend fun updateProfileData(id: Int, name: String, birthday: String, city: String) {
+        profileDataDao.updateProfileData(id,name,birthday,city)
+    }
 }

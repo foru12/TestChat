@@ -24,6 +24,7 @@ ccp = "2.6.0"
 confirmation = "1.8.1"
 androidx_security = "1.1.0-alpha03"
 securityCryptoKtx = "1.1.0-alpha03"
+firebaseCrashlyticsBuildtools = "3.0.2"
 
 
 [libraries]
@@ -58,6 +59,8 @@ ccp = { module = "com.hbb20:ccp", version.ref = "ccp" }
 androidx_security = { module = "androidx.security:security-crypto", version.ref = "androidx_security" }
 androidx-security-crypto-ktx = { group = "androidx.security", name = "security-crypto-ktx", version.ref = "securityCryptoKtx" }
 sms_view = { module = "com.github.fraggjkee:sms-confirmation-view",  version.ref = "confirmation" }
+firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
+kotlin-parcelize = { module = "org.jetbrains.kotlin:kotlin-parcelize", version.ref = "kotlin" }
 
 
 

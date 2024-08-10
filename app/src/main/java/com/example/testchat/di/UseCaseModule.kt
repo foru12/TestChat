@@ -1,12 +1,13 @@
 package com.example.testchat.di
 
-import com.example.testchat.repository.token.AuthTokenRepository
 import com.example.testchat.repository.auth.PhoneNumberRepository
 import com.example.testchat.repository.auth.RegisterRepository
 import com.example.testchat.repository.auth.SendCodeRepository
 import com.example.testchat.repository.chat.ChatRepository
-import com.example.testchat.repository.profile.api.ProfileApiRepository
+import com.example.testchat.repository.profile.ProfileRepository
+import com.example.testchat.repository.profile.api.EditProfileRepository
 import com.example.testchat.repository.profile.room.ProfileRoomRepository
+import com.example.testchat.repository.token.AuthTokenRepository
 import com.example.testchat.repository.token.TokenRepository
 import com.example.testchat.room.AppDatabase
 import com.example.testchat.ui.splash.NetworkHelper
@@ -16,8 +17,10 @@ import com.example.testchat.usecase.auth.RegisterUseCase
 import com.example.testchat.usecase.auth.SaveTokenUseCase
 import com.example.testchat.usecase.auth.SendCodeUseCase
 import com.example.testchat.usecase.profile.DeleteProfileDataUseCase
+import com.example.testchat.usecase.profile.EditProfileUseCase
 import com.example.testchat.usecase.profile.GetProfileDataByIdUseCase
 import com.example.testchat.usecase.profile.InsertProfileDataUseCase
+import com.example.testchat.usecase.profile.UpdateProfileDataUseCase
 import com.example.testchat.usecase.splash.CheckAppVersionUseCase
 import com.example.testchat.usecase.splash.CheckNetworkUseCase
 import com.example.testchat.usecase.splash.CheckTokenUseCase
@@ -38,6 +41,13 @@ object UseCaseModule {
     @Singleton
     fun provideGetProfileDataByIdUseCase(repository: ProfileRoomRepository): GetProfileDataByIdUseCase {
         return GetProfileDataByIdUseCase(repository)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideUpdateProfileDataUseCase(repository: ProfileRoomRepository): UpdateProfileDataUseCase {
+        return UpdateProfileDataUseCase(repository)
     }
 
     @Provides
@@ -71,9 +81,7 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideLoadProfileDataUseCase(
-        profileRepository: ProfileApiRepository
-    ): LoadProfileDataUseCase {
+    fun provideLoadProfileDataUseCase(profileRepository: ProfileRepository): LoadProfileDataUseCase {
         return LoadProfileDataUseCase(profileRepository)
     }
 
@@ -133,6 +141,9 @@ object UseCaseModule {
     }
 
 
-
-
+    @Provides
+    @Singleton
+    fun provideEditProfileUseCase(editProfileRepository: EditProfileRepository): EditProfileUseCase {
+        return EditProfileUseCase(editProfileRepository)
+    }
 }

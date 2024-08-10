@@ -11,29 +11,28 @@ import com.example.testchat.room.mappers.toDbAvatarsData
 fun ProfileApiData.toDbProfileData(): ProfileRoomData {
     return ProfileRoomData(
         id = this.id ?: 0,
-        name = this.name.orEmpty(),
-        username = this.username.orEmpty(),
-        birthday = LocalDate.parse(this.birthday.orEmpty()),
-        city = this.city.orEmpty(),
-        vk = this.vk.orEmpty(),
-        instagram = this.instagram.orEmpty(),
-        status = this.status.orEmpty(),
-        avatar = this.avatar.orEmpty(),
-        last = LocalDateTime.parse(this.last.orEmpty()),
-        online = this.online ?: false,
-        created = LocalDateTime.parse(this.created.orEmpty()),
-        phone = this.phone.orEmpty(),
-        completed_task = this.completedTask ?: 0,
-        avatars = this.toDbAvatarsData() ?: AvatarsRoomData("", "", "")
+        name = this.name,
+        username = this.username,
+        birthday = this.birthday,
+        city = this.city,
+        vk = this.vk,
+        instagram = this.instagram,
+        status = this.status,
+        avatar = this.avatar,
+        last = this.last,
+        online = this.online,
+        created = this.created,
+        phone = this.phone,
+        completed_task = this.completedTask,
+        avatars = this.toDbAvatarsData()
     )
 }
 
 fun ProfileApiData.toDbAvatarsData(): AvatarsRoomData {
     return AvatarsRoomData(
-        avatar = this.avatars?.avatar.orEmpty(),
-        bigAvatar = this.avatars?.bigAvatar.orEmpty(),
-        miniAvatar = this.avatars?.miniAvatar.orEmpty()
+        avatar = this.avatars?.avatar,
+        bigAvatar = this.avatars?.bigAvatar,
+        miniAvatar = this.avatars?.miniAvatar
     )
 }
-
 

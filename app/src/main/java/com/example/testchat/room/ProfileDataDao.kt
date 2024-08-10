@@ -18,4 +18,7 @@ interface ProfileDataDao {
 
     @Delete
     suspend fun deleteProfileData(profileRoomData: ProfileRoomData)
+
+    @Query("UPDATE profile_data SET name = :name, birthday = :birthday, city = :city WHERE id = :id")
+    suspend fun updateProfileData(id: Int, name: String, birthday: String, city: String)
 }

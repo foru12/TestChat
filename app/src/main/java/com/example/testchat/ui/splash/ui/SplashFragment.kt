@@ -47,11 +47,13 @@ class SplashFragment : Fragment() {
 
         viewModel.checkNetwork()
 
-        //todo разобраться как сделать так что бы пользователь если вошел то не авотризовывался заново
+
         viewModel.tokenValid.observe(viewLifecycleOwner) { tokenValid ->
             if (tokenValid) {
-
+                findNavController().navigate(R.id.action_splashFragment_to_chatsFragment)
+                viewModel.loadProfileData()
             } else {
+
                 findNavController().navigate(R.id.action_splashFragment_to_authFragment)
             }
 

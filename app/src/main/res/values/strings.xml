@@ -9,8 +9,25 @@
     <string name="str_change">Изменить</string>
     <string name="str_number_correctly">Правильно ли указан номер?</string>
     <string name="str_error_phone_format">Неверный формат номера</string>
-    <string name="str_name">name</string>
+    <string name="str_name">Name</string>
     <string name="str_user_name">user name</string>
     <string name="str_signin">SignIn</string>
     <string name="str_error_auth_code">Введенный код не верный</string>
+    <string name="str_edit_profile">Редактировать профиль</string>
+
+
+
+    <string name="str_profile_avatar">User Avatar</string>
+    <string name="str_phone_number">Phone Number</string>
+    <string name="str_username">Username</string>
+    <string name="str_city">City</string>
+    <string name="str_birthday">Birthday</string>
+    <string name="str_zodiac_sign">Zodiac Sign</string>
+    <string name="str_about">About</string>
+    <string name="str_vk">VK</string>
+    <string name="str_instagram">Instagram</string>
+    <string name="str_status">Status</string>
+    <string name="str_upload_avatar">Upload Avatar</string>
+    <string name="str_save_profile">Save Profile</string>
+    <string name="str_success_edit">Данные успешно сохранены</string>
 </resources>

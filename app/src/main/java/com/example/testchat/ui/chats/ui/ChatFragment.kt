@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.testchat.R
+import com.example.testchat.databinding.FragmentChatBinding
+import com.example.testchat.databinding.FragmentChatsBinding
 import com.example.testchat.ui.chats.viewmodel.ChatViewModel
 
 class ChatFragment : Fragment() {
-
+    private var _binding: FragmentChatBinding? = null
+    private val binding get() = _binding!!
     companion object {
         fun newInstance() = ChatFragment()
     }
@@ -27,6 +30,7 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        _binding = FragmentChatBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

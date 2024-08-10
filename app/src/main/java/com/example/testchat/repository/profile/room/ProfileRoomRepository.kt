@@ -6,4 +6,5 @@ interface ProfileRoomRepository {
     suspend fun getProfileDataById(id: Int): ProfileRoomData?
     suspend fun insertProfileData(profileRoomData: ProfileRoomData)
     suspend fun deleteProfileData(profileRoomData: ProfileRoomData)
+    suspend fun updateProfileData(id: Int, name: String, birthday: String, city: String)
 }

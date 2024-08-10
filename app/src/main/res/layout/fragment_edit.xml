@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/str_name"
+            android:inputType="textPersonName" />
+
+
+
+        <EditText
+            android:id="@+id/ed_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/str_username"
+            android:inputType="textPersonName" />
+
+
+        <EditText
+            android:id="@+id/ed_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="0123456789."
+            android:hint="DD.MM.YYYY"
+            android:importantForAccessibility="yes"
+            android:inputType="datetime"
+            android:maxLength="10" />
+
+
+        <EditText
+            android:id="@+id/ed_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/str_city"
+            android:inputType="textPersonName" />
+
+
+
+        <EditText
+            android:id="@+id/ed_vk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/str_vk"
+            android:inputType="textPersonName" />
+
+
+        <EditText
+            android:id="@+id/ed_inst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/str_instagram"
+            android:inputType="textPersonName" />
+
+
+        <EditText
+            android:id="@+id/ed_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/str_status"
+            android:inputType="textPersonName" />
+
+
+        <TextView
+            android:id="@+id/txt_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text=""
+            android:textColor="@color/error"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/txt_success"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/str_success_edit"
+            android:textColor="#19F40A"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_upload_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/str_upload_avatar" />
+
+        <RelativeLayout
+            android:id="@+id/cont_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="@color/white"
+                android:translationZ="10dp"
+                android:visibility="gone" />
+
+
+            <Button
+                android:id="@+id/btn_save_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/str_edit_profile" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -4,5 +4,4 @@ import com.example.testchat.room.model.ProfileRoomData
 
 interface ProfileApiRepository {
     suspend fun getProfileData(): ProfileRoomData?
-    suspend fun saveProfileData(profile: ProfileRoomData)
 }

@@ -13,6 +13,10 @@ import com.example.testchat.repository.auth.SendCodeRepository
 import com.example.testchat.repository.auth.SendCodeRepositoryImpl
 import com.example.testchat.repository.chat.ChatRepository
 import com.example.testchat.repository.chat.ChatRepositoryImpl
+import com.example.testchat.repository.profile.ProfileRepository
+import com.example.testchat.repository.profile.ProfileRepositoryImpl
+import com.example.testchat.repository.profile.api.EditProfileRepository
+import com.example.testchat.repository.profile.api.EditProfileRepositoryImpl
 import com.example.testchat.repository.profile.api.ProfileApiRepository
 import com.example.testchat.repository.profile.api.ProfileApiRepositoryImpl
 import com.example.testchat.repository.profile.room.ProfileRoomRepository
@@ -33,26 +37,32 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
-    @Provides
-    @Singleton
-    fun provideProfileRoomRepository(profileDao: ProfileDataDao): ProfileRoomRepository {
-        return ProfileRoomRepositoryImpl(profileDao)
-    }
-
 
     @Provides
     @Singleton
-     fun provideProfileApiRepository(
-        apiService: ApiService,
-        database: AppDatabase
-    ): ProfileApiRepository {
-        return ProfileApiRepositoryImpl(apiService, database)
+    fun provideProfileRepository(
+        apiRepository: ProfileApiRepository,
+        roomRepository: ProfileRoomRepository
+    ): ProfileRepository {
+        return ProfileRepositoryImpl(apiRepository, roomRepository)
     }
 
     @Provides
     @Singleton
-    fun provideTokenRepository(apiService: ApiService): TokenRepository {
-        return TokenRepositoryImpl(apiService)
+    fun provideProfileRoomRepository(database: AppDatabase): ProfileRoomRepository {
+        return ProfileRoomRepositoryImpl(database.profileDataDao())
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileApiRepository(apiService: ApiService): ProfileApiRepository {
+        return ProfileApiRepositoryImpl(apiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTokenRepository(apiService: ApiService, authTokenRepository: AuthTokenRepository): TokenRepository {
+        return TokenRepositoryImpl(apiService,authTokenRepository)
     }
 
     @Provides
@@ -99,5 +109,14 @@ object RepositoryModule {
         apiService: ApiService
     ): CheckCodeRepository {
         return CheckCodeRepositoryImpl(apiService)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideEditProfileRepository(
+        apiService: ApiService
+    ): EditProfileRepository {
+        return EditProfileRepositoryImpl(apiService)
     }
 }
