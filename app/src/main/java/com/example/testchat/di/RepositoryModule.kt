@@ -12,7 +12,7 @@ import com.example.testchat.repository.auth.RegisterRepositoryImpl
 import com.example.testchat.repository.auth.SendCodeRepository
 import com.example.testchat.repository.auth.SendCodeRepositoryImpl
 import com.example.testchat.repository.chat.ChatRepository
-import com.example.testchat.repository.chat.ChatRepositoryImpl
+import com.example.testchat.repository.chat.ChatsRepositoryImpl
 import com.example.testchat.repository.profile.ProfileRepository
 import com.example.testchat.repository.profile.ProfileRepositoryImpl
 import com.example.testchat.repository.profile.api.EditProfileRepository
@@ -66,9 +66,8 @@ object RepositoryModule {
     }
 
     @Provides
-    @Singleton
-    fun provideChatRepository(apiService: ApiService): ChatRepository {
-        return ChatRepositoryImpl(apiService)
+    fun provideChatsRepository(): ChatRepository {
+        return ChatsRepositoryImpl()
     }
 
     @Provides

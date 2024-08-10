@@ -12,6 +12,8 @@ import com.example.testchat.usecase.auth.GetMaxPhoneNumberLengthUseCase
 import com.example.testchat.usecase.auth.GetTokenUseCase
 import com.example.testchat.usecase.auth.RegisterUseCase
 import com.example.testchat.usecase.auth.SaveTokenUseCase
+import com.example.testchat.usecase.auth.ValidateUserInputUseCase
+import com.example.testchat.usecase.auth.ValidationResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -23,17 +25,28 @@ class SigninViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase,
     private val getMaxPhoneNumberLengthUseCase: GetMaxPhoneNumberLengthUseCase,
     private val saveTokenUseCase: SaveTokenUseCase,
-    private val getTokenUseCase: GetTokenUseCase
+    private val getTokenUseCase: GetTokenUseCase,
+    private val validateUserInputUseCase: ValidateUserInputUseCase
 ) : ViewModel(), PhoneNumberLengthProvider {
 
     private val _registrationState = MutableLiveData<Boolean>()
     val registrationState: LiveData<Boolean> get() = _registrationState
 
-
     private val _registrationError = MutableLiveData<String?>()
     val registrationError: LiveData<String?> = _registrationError
 
+    private val _validationErrors = MutableLiveData<List<String>>()
+    val validationErrors: LiveData<List<String>> = _validationErrors
+
     fun registerUser(phone: String, name: String, username: String) {
+
+        val validationResult = validateUserInputUseCase.validate(phone, name, username)
+
+        if (validationResult is ValidationResult.Error) {
+            _validationErrors.value = validationResult.errors
+            return
+        }
+
         viewModelScope.launch {
             try {
                 Log.e("Send Register", "${removeSpaces(phone)}, $name, $username")
@@ -80,8 +93,6 @@ class SigninViewModel @Inject constructor(
             saveTokenUseCase(tokenData)
         }
     }
-
-
 
     private fun removeSpaces(phone: String): String {
         return phone.replace(" ", "")

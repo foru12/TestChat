@@ -31,7 +31,7 @@ class AuthFragment : Fragment() {
             btnLogin.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_loginFragment)
             }
-            btnSignin.setOnClickListener {
+            btnSignIn.setOnClickListener {
                 findNavController().navigate(R.id.action_authFragment_to_signinFragment)
 
             }

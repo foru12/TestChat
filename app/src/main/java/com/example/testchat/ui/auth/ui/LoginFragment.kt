@@ -3,12 +3,14 @@ package com.example.testchat.ui.auth.ui
 import android.content.Context
 import androidx.fragment.app.viewModels
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentLoginBinding
@@ -37,10 +39,15 @@ class LoginFragment : Fragment() {
 
     }
 
+    private fun validatePhoneNumber(phoneNumber: String): Boolean {
+        Log.e("NMWEP",phoneNumber.length.toString())
+        return phoneNumber.length == 13
+    }
+
     private fun formatNumber() {
 
 
-        val phoneNumberWatcher = PhoneNumberFormattingTextWatcher(binding.countryCode, viewModel)
+        val phoneNumberWatcher = PhoneNumberFormattingTextWatcher(binding.countryCode, viewModel,binding.edNumber)
         binding.edNumber.addTextChangedListener(phoneNumberWatcher)
 
         binding.countryCode.setDefaultCountryUsingNameCode(Locale.getDefault().country)
@@ -62,7 +69,11 @@ class LoginFragment : Fragment() {
     private fun setClick() {
         binding.run {
             btnSend.setOnClickListener {
+                if (validatePhoneNumber(edNumber.text.toString()))
                 showDialog(countryCode.selectedCountryCodeWithPlus + edNumber.text.toString())
+                else{
+                    edNumber.setBackgroundResource(R.drawable.ed_fail_bg)
+                }
             }
         }
     }
@@ -73,9 +84,11 @@ class LoginFragment : Fragment() {
             val bundle = Bundle().apply {
                 putString(CodeFragment.ARG_CONFIRMED_NUMBER, confirmedNumber)
             }
+
             viewModel.authResult.observe(viewLifecycleOwner) { response ->
                 if (response.isSuccess){
                     findNavController().navigate(R.id.action_loginFragment_to_codeFragment, bundle)
+
                 }else{
                     //todo обработать ошибку
                 }

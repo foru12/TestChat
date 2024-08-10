@@ -16,6 +16,10 @@ import com.example.testchat.usecase.auth.GetTokenUseCase
 import com.example.testchat.usecase.auth.RegisterUseCase
 import com.example.testchat.usecase.auth.SaveTokenUseCase
 import com.example.testchat.usecase.auth.SendCodeUseCase
+import com.example.testchat.usecase.auth.ValidateUserInputUseCase
+import com.example.testchat.usecase.chats.GetChatsUseCase
+import com.example.testchat.usecase.chats.GetMessagesUseCase
+import com.example.testchat.usecase.chats.SendMessageUseCase
 import com.example.testchat.usecase.profile.DeleteProfileDataUseCase
 import com.example.testchat.usecase.profile.EditProfileUseCase
 import com.example.testchat.usecase.profile.GetProfileDataByIdUseCase
@@ -145,5 +149,26 @@ object UseCaseModule {
     @Singleton
     fun provideEditProfileUseCase(editProfileRepository: EditProfileRepository): EditProfileUseCase {
         return EditProfileUseCase(editProfileRepository)
+    }
+
+    @Provides
+    fun provideValidateUserInputUseCase(): ValidateUserInputUseCase {
+        return ValidateUserInputUseCase()
+    }
+
+
+    @Provides
+    fun provideGetChatsUseCase(repository: ChatRepository): GetChatsUseCase {
+        return GetChatsUseCase(repository)
+    }
+
+    @Provides
+    fun provideGetMessagesUseCase(repository: ChatRepository): GetMessagesUseCase {
+        return GetMessagesUseCase(repository)
+    }
+
+    @Provides
+    fun provideSendMessageUseCase(repository: ChatRepository): SendMessageUseCase {
+        return SendMessageUseCase(repository)
     }
 }

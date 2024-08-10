@@ -73,7 +73,6 @@ class CodeViewModel @Inject constructor(
     }
 
     private fun parseError(message: String?): String {
-        // Ваш метод для парсинга ошибки
         return message ?: "Unknown error"
     }
 }

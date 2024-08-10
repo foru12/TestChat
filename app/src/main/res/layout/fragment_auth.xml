@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.ui.AuthFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@color/white">
 
-    <LinearLayout
-        android:id="@+id/cont_choice_auth"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="32dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:text="Login"
+        app:backgroundTint="@null"
+        android:textSize="23sp"
+        android:background="@drawable/btn_selector"
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSignIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        app:backgroundTint="@null"
+        android:textSize="23sp"
+        android:background="@drawable/btn_selector"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Login"/>
-
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_signin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-
-            android:text="Signin"/>
-
-
-
-
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

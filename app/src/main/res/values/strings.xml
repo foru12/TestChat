@@ -3,17 +3,21 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="try_again">Try again</string>
-    <string name="str_number">phone</string>
+    <string name="str_number">Номер телефона</string>
     <string name="str_get_code">Получить код</string>
     <string name="str_all_right">Все верно</string>
     <string name="str_change">Изменить</string>
     <string name="str_number_correctly">Правильно ли указан номер?</string>
     <string name="str_error_phone_format">Неверный формат номера</string>
     <string name="str_name">Name</string>
-    <string name="str_user_name">user name</string>
+    <string name="str_user_name">User name</string>
     <string name="str_signin">SignIn</string>
     <string name="str_error_auth_code">Введенный код не верный</string>
     <string name="str_edit_profile">Редактировать профиль</string>
+
+    <string name="str_invalid_number">Invalid phone number. It should be 13 characters long.</string>
+    <string name="str_invalid_name">Name cannot be empty.</string>
+    <string name="str_invalid_username">Username must contain only letters, numbers, and -_ characters.</string>
 
 
 

@@ -37,7 +37,7 @@ class ProfileFragment : Fragment() {
             "profileData"
         )
             ?.observe(viewLifecycleOwner) { newProfileData ->
-                Log.e("EditFragemnt","IsBack")
+                Log.e("EditFragemnt", "IsBack")
                 viewModel.insertProfileData(
                     newProfileData?.name,
                     newProfileData?.username,

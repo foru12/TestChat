@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.auth.ui.SigninFragment">
 
     <LinearLayout
@@ -11,16 +11,16 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_centerVertical="true"
-        android:orientation="vertical">
-
-
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_margin="20dp">
 
         <LinearLayout
-            android:id="@+id/cont_number"
+            android:id="@+id/ll_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-
+            android:background="@drawable/ed_bg_selector"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -30,47 +30,70 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:ccp_showFlag="false"
-                app:ccp_showNameCode="false" />
+                app:ccp_showNameCode="false"/>
 
             <EditText
                 android:id="@+id/ed_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/ed_bg_selector"
                 android:hint="@string/str_number"
                 android:inputType="phone"
                 android:maxLength="20"
                 android:paddingStart="16dp"
                 android:paddingTop="14dp"
                 android:paddingEnd="16dp"
-                android:paddingBottom="14dp" />
+                android:paddingBottom="14dp"
+                android:textColorHint="@color/hint_color" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/ed_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/str_name"/>
-
-
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ed_bg_selector"
+            android:hint="@string/str_name"
+            android:paddingStart="16dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="14dp"
+            android:textColorHint="@color/hint_color" />
 
         <EditText
             android:id="@+id/ed_user_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="@string/str_user_name"/>
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ed_bg_selector"
+            android:hint="@string/str_user_name"
+            android:paddingStart="16dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="14dp"
+            android:textColorHint="@color/hint_color" />
 
 
-
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_signin"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/str_signin"/>
-
+            android:background="@drawable/btn_selector"
+            android:text="@string/str_signin"
+            android:textColor="@android:color/white"
+            android:textSize="23sp"
+            app:backgroundTint="@null"
+            android:padding="16dp"/>
     </LinearLayout>
-
 
 </RelativeLayout>

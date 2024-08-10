@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentCodeBinding
@@ -39,7 +40,11 @@ class CodeFragment : Fragment() {
 
         viewModel.authResult.observe(viewLifecycleOwner) { result ->
             if (result) {
-                findNavController().navigate(R.id.action_codeFragment_to_chatsFragment)
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(R.id.authFragment, true)
+                    .build()
+                findNavController().navigate(R.id.action_codeFragment_to_chatsFragment, null, navOptions)
+
             } else {
                 Toast.makeText(
                     requireContext(),

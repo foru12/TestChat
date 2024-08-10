@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testchat.usecase.auth.ValidateUserInputUseCase
 import com.example.testchat.usecase.splash.CheckAppVersionUseCase
 import com.example.testchat.usecase.splash.CheckNetworkUseCase
 import com.example.testchat.usecase.splash.CheckTokenUseCase
@@ -21,7 +22,8 @@ class SplashViewModel @Inject constructor(
     private val loadProfileDataUseCase: LoadProfileDataUseCase,
     private val loadChatsUseCase: LoadChatsUseCase,
     private val checkAppVersionUseCase: CheckAppVersionUseCase,
-    private val checkNetworkUseCase: CheckNetworkUseCase
+    private val checkNetworkUseCase: CheckNetworkUseCase,
+
 ) : ViewModel() {
 
     private val _networkError = MutableLiveData<String>()
@@ -29,6 +31,8 @@ class SplashViewModel @Inject constructor(
 
     private val _tokenValid = MutableLiveData<Boolean>()
     val tokenValid: LiveData<Boolean> = _tokenValid
+
+
 
     //Проверка токена перед входом
     fun checkToken() {

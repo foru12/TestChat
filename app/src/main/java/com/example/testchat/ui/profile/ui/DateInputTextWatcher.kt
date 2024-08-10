@@ -17,10 +17,9 @@ class DateInputTextWatcher(private val editText: EditText) : TextWatcher {
         isEditing = true
         val input = s.toString()
 
-        // Удаляем все символы, кроме цифр
         val digitsOnly = input.replace("[^\\d]".toRegex(), "")
 
-        // Строим формат yyyy-MM-dd
+      
         val formatted = StringBuilder()
         when {
             digitsOnly.length <= 4 -> {
@@ -37,7 +36,7 @@ class DateInputTextWatcher(private val editText: EditText) : TextWatcher {
             }
         }
 
-        // Обновляем текст в EditText
+        
         editText.setText(formatted.toString())
         editText.setSelection(formatted.length)
 

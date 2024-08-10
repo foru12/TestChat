@@ -152,6 +152,13 @@ class EditFragment : Fragment() {
                 }
             }
         }
+        viewModel.imageData.observe(viewLifecycleOwner) { imageData ->
+            if (imageData != null) {
+                binding.btnUploadAvatar.text = "✔"
+                binding.btnUploadAvatar.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+
+            }
+        }
     }
 
     private fun showIdleState() {

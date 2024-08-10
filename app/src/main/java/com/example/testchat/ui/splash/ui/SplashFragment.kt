@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentSplashBinding
@@ -46,15 +47,17 @@ class SplashFragment : Fragment() {
         }
 
         viewModel.checkNetwork()
-
+        val navOptions = NavOptions.Builder()
+            .setPopUpTo(R.id.splashFragment, true)
+            .build()
 
         viewModel.tokenValid.observe(viewLifecycleOwner) { tokenValid ->
             if (tokenValid) {
-                findNavController().navigate(R.id.action_splashFragment_to_chatsFragment)
                 viewModel.loadProfileData()
-            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_chatsFragment, null, navOptions)
 
-                findNavController().navigate(R.id.action_splashFragment_to_authFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashFragment_to_authFragment, null, navOptions)
             }
 
         }

@@ -1,5 +1,6 @@
 package com.example.testchat.ui.auth.ui
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,11 +37,11 @@ class MyDialogFragment : DialogFragment() {
         binding.textMessage.text = getString(R.string.str_number_correctly)
 
 
-        binding.buttonConfirm.setOnClickListener {
+        binding.btnConfirm.setOnClickListener {
             onConfirm?.invoke(number)
             dismiss()
         }
-        binding.buttonChange.setOnClickListener {
+        binding.btnChange.setOnClickListener {
             onChange?.invoke()
             dismiss()
         }
@@ -51,6 +52,11 @@ class MyDialogFragment : DialogFragment() {
         _binding = null
     }
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = Dialog(requireContext(), R.style.CustomDialogTheme)
+        dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+        return dialog
+    }
     companion object {
         private const val ARG_NUMBER = "number"
 
