@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Test chat</string>
+    <string name="try_again">Try yourself</string>
+    <string name="str_number">Phone number</string>
+    <string name="str_get_code">Get the code</string>
+    <string name="str_all_right">Thats right</string>
+    <string name="str_change">Change</string>
+    <string name="str_number_correctly">Did you enter the number correctly?</string>
+    <string name="str_error_phone_format">New format number</string>
+    <string name="str_name">Name</string>
+    <string name="str_user_name">Nickname</string>
+    <string name="str_signin">Registration</string>
+    <string name="str_error_auth_code">The entered code is not correct</string>
+    <string name="str_edit_profile">Edit file</string>
+
+    <string name="str_invalid_number">New phone number</string>
+    <string name="str_invalid_name">I cant be the reason.</string>
+    <string name="str_invalid_username">I am a user who can only store books, magazines, and _ characters for a long time.</string>
+
+
+
+    <string name="str_profile_avatar">Avatar user</string>
+    <string name="str_phone_number">Phone number</string>
+    <string name="str_username">I am a user of </string>
+    <string name="str_city">City</string>
+    <string name="str_birthday">Birthday</string>
+    <string name="str_zodiac_sign">Zodiac sign</string>
+    <string name="str_about">About Yourself</string>
+    <string name="str_vk">Vkontakte</string>
+    <string name="str_instagram">Instagram</string>
+    <string name="str_status">Stat</string>
+    <string name="str_upload_avatar">Upload avatar</string>
+    <string name="str_save_profile">Save the file</string>
+    <string name="str_success_edit">Data experienced users</string>
+    <string name="str_login">Login</string>
+    <string name="str_welcome">Welcome</string>
+
+</resources>

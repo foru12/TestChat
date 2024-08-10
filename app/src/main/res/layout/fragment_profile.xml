@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Name"
+            android:text="@string/str_name"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Username"
+            android:text="@string/str_user_name"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="VK"
+            android:text="@string/str_vk"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Instagram"
+            android:text="@string/str_instagram"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Status"
+            android:text="@string/str_status"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -126,7 +126,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Phone Number"
+            android:text="@string/str_phone_number"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -145,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="City"
+            android:text="@string/str_city"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -164,7 +164,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Birthday"
+            android:text="@string/str_birthday"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -183,7 +183,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="Zodiac Sign"
+            android:text="@string/str_zodiac_sign"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -202,7 +202,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="About"
+            android:text="@string/str_about"
             android:textSize="16sp"
             android:textStyle="bold" />
 
