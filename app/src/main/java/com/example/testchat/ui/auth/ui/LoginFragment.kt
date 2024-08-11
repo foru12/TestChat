@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.testchat.Logger
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentLoginBinding
 import com.example.testchat.ui.auth.viewmodel.LoginViewModel
@@ -40,7 +41,6 @@ class LoginFragment : Fragment() {
     }
 
     private fun validatePhoneNumber(phoneNumber: String): Boolean {
-        Log.e("NMWEP",phoneNumber.length.toString())
         return phoneNumber.length == 13
     }
 

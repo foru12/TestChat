@@ -1,7 +1,6 @@
 package com.example.testchat.usecase.splash
 
 import com.example.testchat.repository.profile.ProfileRepository
-import com.example.testchat.repository.profile.api.ProfileApiRepository
 import com.example.testchat.room.model.ProfileRoomData
 import javax.inject.Inject
 

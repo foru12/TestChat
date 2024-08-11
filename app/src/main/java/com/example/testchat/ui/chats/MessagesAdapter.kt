@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testchat.Logger
 import com.example.testchat.databinding.ItemMessageBinding
 import com.example.testchat.retrofit.model.Message
 
@@ -23,7 +24,7 @@ class MessagesAdapter(
     override fun getItemCount() = messages.size
 
     fun updateMessages(newMessages: List<Message>) {
-        Log.e("MessagesAdapter", "Updating messages: $newMessages")
+        Logger.e("MessagesAdapter", "Updating messages: $newMessages")
         messages = newMessages
         notifyDataSetChanged()
     }

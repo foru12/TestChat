@@ -1,6 +1,7 @@
 package com.example.testchat.repository.token
 
 import android.util.Log
+import com.example.testchat.Logger
 import com.example.testchat.retrofit.ApiService
 import com.example.testchat.retrofit.ErrorParser
 import com.example.testchat.retrofit.model.RequestRefreshToken
@@ -19,18 +20,18 @@ class TokenRepositoryImpl @Inject constructor(
             try {
                 val response = apiService.checkToken()
                 if (response.isSuccessful) {
-                    Log.e("TokenRepositoryImpl", "Token is valid")
+                    Logger.e("TokenRepositoryImpl", "Token is valid")
                     true
                 } else {
-                    Log.e("TokenRepositoryImpl", "Token is invalid, attempting refresh")
+                    Logger.e("TokenRepositoryImpl", "Token is invalid, attempting refresh")
                     refreshAndSaveToken(tokenData.refreshToken)
                 }
             } catch (e: Exception) {
-                Log.e("TokenRepositoryImpl", "Error checking token: ${e.message}")
+                Logger.e("TokenRepositoryImpl", "Error checking token: ${e.message}")
                 false
             }
         } else {
-            Log.e("TokenRepositoryImpl", "No token data available")
+            Logger.e("TokenRepositoryImpl", "No token data available")
             false
         }
     }
@@ -48,27 +49,27 @@ class TokenRepositoryImpl @Inject constructor(
                             newTokenData.user_id
                         )
                         authTokenRepository.saveTokenAuth(tokenData)
-                        Log.e("TokenRepositoryImpl", "Token refreshed and saved successfully")
+                        Logger.e("TokenRepositoryImpl", "Token refreshed and saved successfully")
                         true
                     } else {
-                        Log.e(
+                        Logger.e(
                             "TokenRepositoryImpl",
                             "Token refresh failed: Missing required fields"
                         )
                         false
                     }
                 } ?: run {
-                    Log.e("TokenRepositoryImpl", "Token refresh failed: Empty response body")
+                    Logger.e("TokenRepositoryImpl", "Token refresh failed: Empty response body")
                     false
                 }
             } else {
                 val errorBody = response.errorBody()?.string()
                 val errorMessage = ErrorParser.parseError(errorBody)
-                Log.e("TokenRepositoryImpl", "Token refresh failed: $errorMessage")
+                Logger.e("TokenRepositoryImpl", "Token refresh failed: $errorMessage")
                 false
             }
         } catch (e: Exception) {
-            Log.e("TokenRepositoryImpl", "Error refreshing token: ${e.message}")
+            Logger.e("TokenRepositoryImpl", "Error refreshing token: ${e.message}")
             false
         }
     }

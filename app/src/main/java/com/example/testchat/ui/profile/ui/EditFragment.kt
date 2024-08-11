@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.testchat.Logger
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentEditBinding
 import com.example.testchat.retrofit.model.RequestAvatar
@@ -247,7 +248,7 @@ class EditFragment : Fragment() {
             val inst = it.getString(ARG_INST)
             val status = it.getString(ARG_STATUS)
 
-            Log.e("Args", "$name $userName $birthday $city  $vk $inst $status")
+            Logger.e("Args", "$name $userName $birthday $city  $vk $inst $status")
 
             binding.run {
                 edName.setText(name)

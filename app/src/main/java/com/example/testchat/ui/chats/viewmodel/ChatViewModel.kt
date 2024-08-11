@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testchat.Logger
 import com.example.testchat.retrofit.model.Message
 import com.example.testchat.usecase.chats.GetMessagesUseCase
 import com.example.testchat.usecase.chats.SendMessageUseCase
@@ -25,7 +26,7 @@ class ChatViewModel @Inject constructor(
     fun loadMessages(chatId: String) {
         viewModelScope.launch {
             val loadedMessages = getMessagesUseCase.execute(chatId)
-            Log.e("ChatViewModel", "Loaded messages: $loadedMessages")
+            Logger.e("ChatViewModel", "Loaded messages: $loadedMessages")
             _messages.value = loadedMessages
         }
     }
@@ -38,11 +39,11 @@ class ChatViewModel @Inject constructor(
                 delay(2000)
 
                 val updatedMessages = getMessagesUseCase.execute(chatId)
-                Log.e("ChatViewModel", "Updated messages after sending: $updatedMessages")
+                Logger.e("ChatViewModel", "Updated messages after sending: $updatedMessages")
                 delay(2000)
                 _messages.value = updatedMessages
             } catch (e: Exception) {
-                Log.e("ChatViewModel", "Error in sendMessage: ${e.message}")
+                Logger.e("ChatViewModel", "Error in sendMessage: ${e.message}")
             }
         }
     }

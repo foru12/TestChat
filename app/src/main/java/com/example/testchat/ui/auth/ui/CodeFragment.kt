@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.testchat.Logger
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentCodeBinding
 import com.example.testchat.ui.auth.viewmodel.CodeViewModel
@@ -35,7 +36,7 @@ class CodeFragment : Fragment() {
 
 
         val confirmedNumber = arguments?.getString(ARG_CONFIRMED_NUMBER)
-        Log.e("Number", confirmedNumber.toString())
+        Logger.e("Number", confirmedNumber.toString())
 
 
         viewModel.authResult.observe(viewLifecycleOwner) { result ->
@@ -58,8 +59,8 @@ class CodeFragment : Fragment() {
 
         binding.smsCodeView.onChangeListener =
             SmsConfirmationView.OnChangeListener { code, isComplete ->
-                Log.e("Code", code.toString())
-                Log.e("Code", isComplete.toString())
+                Logger.e("Code", code.toString())
+                Logger.e("Code", isComplete.toString())
                 if (isComplete) {
                     viewModel.checkAuthCode(confirmedNumber.toString(), code)
                 }

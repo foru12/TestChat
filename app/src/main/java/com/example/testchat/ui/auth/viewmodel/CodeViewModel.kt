@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.example.testchat.Logger
 import com.example.testchat.retrofit.model.ResponseCheckCode
 import com.example.testchat.room.model.TokenData
 import com.example.testchat.usecase.auth.CheckCodeUseCase
@@ -30,7 +31,7 @@ class CodeViewModel @Inject constructor(
     fun checkAuthCode(phone: String, code: String) {
         viewModelScope.launch {
             try {
-                Log.d("Send Code", "$phone $code")
+                Logger.e("Send Code", "$phone $code")
                 val response = checkCodeUseCase(phone, code)
 
                 if (response.isSuccessful) {
@@ -46,10 +47,10 @@ class CodeViewModel @Inject constructor(
                     _authResult.value = false
                 }
 
-                Log.d("Response", response.toString())
+                Logger.e("Response", response.toString())
             } catch (e: Exception) {
                 val errorMessage = parseError(e.message)
-                Log.e("Error Message", errorMessage)
+                Logger.e("Error Message", errorMessage)
                 _authResult.value = false
             }
         }

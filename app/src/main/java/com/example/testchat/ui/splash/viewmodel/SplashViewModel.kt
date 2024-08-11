@@ -1,10 +1,10 @@
 package com.example.testchat.ui.splash.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testchat.Logger
 import com.example.testchat.usecase.auth.ValidateUserInputUseCase
 import com.example.testchat.usecase.splash.CheckAppVersionUseCase
 import com.example.testchat.usecase.splash.CheckNetworkUseCase
@@ -20,8 +20,6 @@ import javax.inject.Inject
 class SplashViewModel @Inject constructor(
     private val checkTokenUseCase: CheckTokenUseCase,
     private val loadProfileDataUseCase: LoadProfileDataUseCase,
-    private val loadChatsUseCase: LoadChatsUseCase,
-    private val checkAppVersionUseCase: CheckAppVersionUseCase,
     private val checkNetworkUseCase: CheckNetworkUseCase,
 
 ) : ViewModel() {
@@ -37,8 +35,11 @@ class SplashViewModel @Inject constructor(
     //Проверка токена перед входом
     fun checkToken() {
         viewModelScope.launch {
-            _tokenValid.value = checkTokenUseCase.execute()
-            Log.e("SplashViewModel", "Token validity: ${_tokenValid.value}")
+            val isValid = checkTokenUseCase.execute()
+            _tokenValid.value = isValid
+            if (isValid) {
+                loadProfileData()
+            }
         }
     }
 
@@ -48,30 +49,30 @@ class SplashViewModel @Inject constructor(
     fun loadProfileData() {
         viewModelScope.launch {
             val roomData = loadProfileDataUseCase.execute()
-            Log.e("Room Data",roomData.toString())
+            Logger.e("Room Data",roomData.toString())
 
         }
     }
 
     //грузим чаты еще на Splash
-    fun loadChats() {
+   /* fun loadChats() {
         viewModelScope.launch {
             loadChatsUseCase.execute()
         }
-    }
+    }*/
 
     //Можем проверять версию в сторах и если там более новая то предложить обновить версию
-    fun checkAppVersion() {
+  /*  fun checkAppVersion() {
         viewModelScope.launch {
             checkAppVersionUseCase.execute()
         }
-    }
+    }*/
 
     fun checkNetwork() {
         _networkError.value = if (!checkNetworkUseCase.execute()) {
             "No internet connection. Please retry."
         } else {
-            Log.e("Network Status", "Succes")
+            Logger.e("Network Status", "Succes")
             null
         }
     }

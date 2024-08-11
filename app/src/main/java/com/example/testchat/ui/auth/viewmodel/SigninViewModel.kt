@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.example.testchat.Logger
 import com.example.testchat.retrofit.model.ResponseRegister
 import com.example.testchat.room.model.TokenData
 import com.example.testchat.usecase.auth.GetMaxPhoneNumberLengthUseCase
@@ -49,7 +50,7 @@ class SigninViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
-                Log.e("Send Register", "${removeSpaces(phone)}, $name, $username")
+                Logger.e("Send Register", "${removeSpaces(phone)}, $name, $username")
                 val response = registerUseCase(removeSpaces(phone), name, username)
 
                 if (response.isSuccessful) {
@@ -59,23 +60,23 @@ class SigninViewModel @Inject constructor(
                         _registrationState.value = true
                         _registrationError.value = null
                     } else {
-                        Log.e("Response Data", "Null")
+                        Logger.e("Response Data", "Null")
                         _registrationState.value = false
                         _registrationError.value = "No data available"
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
                     val errorMessage = parseError(errorBody)
-                    Log.e("Message Error", errorMessage)
+                    Logger.e("Message Error", errorMessage)
                     _registrationState.value = false
                     _registrationError.value = errorMessage
                 }
             } catch (e: HttpException) {
                 _registrationState.value = false
                 _registrationError.value = "HTTP error: ${e.message}"
-                Log.e(" HttpExc Error", e.message.toString())
+                Logger.e(" HttpExc Error", e.message.toString())
             } catch (e: Exception) {
-                Log.e("Exc Error", e.message.toString())
+                Logger.e("Exc Error", e.message.toString())
                 _registrationError.value = "Registration failed: ${e.message}"
                 _registrationState.value = false
             }
@@ -84,7 +85,7 @@ class SigninViewModel @Inject constructor(
 
     private fun saveUserData(responseRegister: ResponseRegister) {
         viewModelScope.launch {
-            Log.e("Data is saved", responseRegister.toString())
+            Logger.e("Data is saved", responseRegister.toString())
             val tokenData = TokenData(
                 responseRegister.refreshToken,
                 responseRegister.accessToken,

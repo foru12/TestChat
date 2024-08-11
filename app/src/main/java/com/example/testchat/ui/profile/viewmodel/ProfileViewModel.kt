@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testchat.Logger
 import com.example.testchat.retrofit.model.RequestAvatar
 import com.example.testchat.room.model.AvatarsRoomData
 import com.example.testchat.room.model.ProfileRoomData
@@ -83,7 +84,7 @@ class ProfileViewModel @Inject constructor(
         val dateOfBirth: LocalDate = try {
             LocalDate.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE)
         } catch (e: Exception) {
-            Log.e("Data Locale", e.message.toString())
+            Logger.e("Data Locale", e.message.toString())
             return ""
         }
 

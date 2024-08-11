@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testchat.Logger
 import com.example.testchat.retrofit.model.RequestProfileData
 import com.example.testchat.room.model.ProfileRoomData
 import com.example.testchat.usecase.auth.GetTokenUseCase
@@ -43,11 +44,11 @@ class EditViewModel
                 if (response.isSuccessful) {
                     _editProfileState.value = EditProfileState.Success(request)
                 } else {
-                    Log.e("Edit Error","Error: ${response.message()}")
+                    Logger.e("Edit Error","Error: ${response.message()}")
                     _editProfileState.value = EditProfileState.Error("Error: ${response.message()}")
                 }
             } catch (e: Exception) {
-                Log.e("Edit Exception","Exception: ${e.message}")
+                Logger.e("Edit Exception","Exception: ${e.message}")
                 _editProfileState.value = EditProfileState.Error("Exception: ${e.message}")
             }
         }

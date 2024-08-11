@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.testchat.Logger
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentProfileBinding
 import com.example.testchat.retrofit.model.RequestProfileData
@@ -37,7 +38,7 @@ class ProfileFragment : Fragment() {
             "profileData"
         )
             ?.observe(viewLifecycleOwner) { newProfileData ->
-                Log.e("EditFragemnt", "IsBack")
+                Logger.e("EditFragemnt", "IsBack")
                 viewModel.insertProfileData(
                     newProfileData?.name,
                     newProfileData?.username,
@@ -86,8 +87,8 @@ class ProfileFragment : Fragment() {
                     txtInst.text = profileData.instagram
                     txtStatus.text = profileData.status
                     txtZodiac.text = viewModel.getZodiacSign(profileData.birthday.toString())
-                    Log.e("Avatar", profileData.avatar.toString())
-                    Log.e("Avatar", profileData.avatars?.bigAvatar.toString())
+                    Logger.e("Avatar", profileData.avatar.toString())
+                    Logger.e("Avatar", profileData.avatars?.bigAvatar.toString())
                 }
 
             }

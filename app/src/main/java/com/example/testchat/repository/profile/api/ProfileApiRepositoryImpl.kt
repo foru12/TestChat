@@ -1,32 +1,28 @@
 package com.example.testchat.repository.profile.api
 
-import android.util.Log
+import com.example.testchat.Logger
 import com.example.testchat.retrofit.ApiService
-import com.example.testchat.room.AppDatabase
+import com.example.testchat.room.mappers.toDbProfileData
 import com.example.testchat.room.model.ProfileRoomData
 import javax.inject.Inject
-import com.example.testchat.room.mappers.toDbProfileData
 
-class ProfileApiRepositoryImpl  @Inject constructor(
+class ProfileApiRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : ProfileApiRepository {
-    override suspend fun getProfileData(): ProfileRoomData? {
+    override suspend fun getProfileData(): Result<ProfileRoomData?> {
         return try {
             val response = apiService.getProfileData()
             if (response.isSuccessful) {
-                Log.e("ProfileApi",response.body()?.profileApiData.toString())
-                Log.e("ProfileApiToDb",response.body()?.profileApiData?.toDbProfileData().toString())
-                response.body()?.profileApiData?.toDbProfileData()
-
+                val profileData = response.body()?.profileApiData?.toDbProfileData()
+                Logger.e("ProfileApi", profileData.toString())
+                Result.success(profileData)
             } else {
-                Log.e("Response","Null")
-                null
+                Logger.e("Response", "Null")
+                Result.failure(Exception("API call failed with response: ${response.code()}"))
             }
         } catch (e: Exception) {
-            Log.e("ResponseException",e.message.toString())
-            null
+            Logger.e("ResponseException", e.message.toString())
+            Result.failure(e)
         }
     }
-
-
 }

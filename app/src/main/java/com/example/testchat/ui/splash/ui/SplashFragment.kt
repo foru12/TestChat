@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.testchat.Logger
 import com.example.testchat.R
 import com.example.testchat.databinding.FragmentSplashBinding
 import com.example.testchat.ui.splash.viewmodel.SplashViewModel
@@ -36,9 +37,9 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.networkError.observe(viewLifecycleOwner) { errorMessage ->
-            Log.e("Network Status", "loading...")
+            Logger.e("Network Status", "loading...")
             if (errorMessage != null) {
-                Log.e("Network Status", "Error")
+                Logger.e("Network Status", "Error")
                 showNetworkError(errorMessage)
             } else {
                 viewModel.checkToken()
